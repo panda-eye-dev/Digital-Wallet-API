@@ -9,9 +9,7 @@ class UserCreate(BaseModel):
     balance: Optional[int] = None
 
     class Config:
-        orm_mode = True
-        # exclude unset values when converting to dict
-        extra = "ignore"
+        from_attributes: True
 
 class UserResponse(BaseModel):
     username: str 
@@ -47,3 +45,14 @@ class FundResponse(BaseModel):
 
 class BalanceResponse(BaseModel):
     balance: int
+
+class Pay(BaseModel):
+    username: str 
+    amount: int 
+
+class PayResponse(BaseModel):
+    username: str 
+    balance: int
+
+    class Config:
+        from_attributes: True
