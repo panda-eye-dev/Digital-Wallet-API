@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.sql.expression import text
 from app.core.db import Base
 from sqlalchemy.sql.sqltypes import TIMESTAMP
+from sqlalchemy.orm import relationship
 
 class User(Base):
     __tablename__ = "users"
@@ -12,3 +13,5 @@ class User(Base):
     password = Column(String, nullable=False)
     balance = Column(Integer, default=0)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False,server_default=text("now()"))
+    
+    transactions = relationship("Transaction", back_populates="user")
