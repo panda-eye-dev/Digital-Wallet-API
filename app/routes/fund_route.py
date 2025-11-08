@@ -8,7 +8,7 @@ router = APIRouter(
     tags=['Fund'] 
 )
 
-@router.post('/fund')
+@router.post('/fund', response_model=user_schema.FundResponse)
 def fund_account(payload: user_schema.FundAccount, db: Session = Depends(get_db), current_user: int = Depends(get_current_user)):
     
     amt = payload.amount
@@ -20,5 +20,5 @@ def fund_account(payload: user_schema.FundAccount, db: Session = Depends(get_db)
     current_user.balance = balance + amt
     db.commit()
     db.refresh(current_user)
-    return current_user     
+    return current_user   
 

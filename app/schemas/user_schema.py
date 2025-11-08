@@ -39,3 +39,11 @@ class TokenData(BaseModel):
 
 class FundAccount(BaseModel):
     amount: int 
+
+class FundResponse(BaseModel):
+    id: int
+    username: str 
+    balance: int
+
+class BalanceResponse(BaseModel):
+    balance: int
